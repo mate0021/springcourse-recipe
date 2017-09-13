@@ -33,6 +33,20 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
+    @ManyToMany
+    @JoinTable(name = "recipe_category", // new join table will be created with that name
+            joinColumns = @JoinColumn(name = "recipe_id"), // ids from this will be 'recipe_id'...
+            inverseJoinColumns = @JoinColumn(name = "category_id")) // ... and from the other side 'category_id'
+    private Set<Category> categories;
+
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 
     public Set<Ingredient> getIngredients() {
         return ingredients;
