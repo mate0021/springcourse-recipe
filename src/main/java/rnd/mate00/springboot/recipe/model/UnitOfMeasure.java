@@ -12,7 +12,6 @@ public class UnitOfMeasure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
     private String name;
 
     public long getId() {

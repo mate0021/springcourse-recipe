@@ -23,5 +23,46 @@ public class Ingredient {
     @ManyToOne()
     private Recipe recipe;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public UnitOfMeasure getUnits() {
+		return units;
+	}
+
+	public void setUnits(UnitOfMeasure units) {
+		this.units = units;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
+    
 
 }
