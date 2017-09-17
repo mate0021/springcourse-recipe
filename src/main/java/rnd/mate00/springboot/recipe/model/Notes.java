@@ -15,6 +15,7 @@ public class Notes {
     @OneToOne // we don't want to delete Recipe when deleting Notes
     private Recipe recipe;
 
+    @Lob
     private String recipeNotes;
 
     public long getId() {

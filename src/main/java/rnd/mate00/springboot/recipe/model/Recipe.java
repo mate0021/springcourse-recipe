@@ -1,6 +1,8 @@
 package rnd.mate00.springboot.recipe.model;
 
 import javax.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,6 +21,8 @@ public class Recipe {
     private int servings;
     private String source;
     private String url;
+    
+    @Lob
     private String directions;
 
     @Lob
@@ -31,15 +35,25 @@ public class Recipe {
     private Notes notes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "recipe_category", // new join table will be created with that name
             joinColumns = @JoinColumn(name = "recipe_id"), // ids from this will be 'recipe_id'...
             inverseJoinColumns = @JoinColumn(name = "category_id")) // ... and from the other side 'category_id'
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
 
+    public void addIngredient(Ingredient ingredient) {
+    	ingredient.setRecipe(this);
+    	ingredients.add(ingredient);
+    }
+    
+    public void addCategory(Category category) {
+    	category.getRecipies().add(this);
+    	categories.add(category);
+    }
+    
     public Set<Category> getCategories() {
         return categories;
     }
