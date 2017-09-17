@@ -23,7 +23,7 @@ public class Ingredient {
     @ManyToOne()
     private Recipe recipe;
 
-
+    public Ingredient() {}
     
 	public Ingredient(String description, BigDecimal amount, UnitOfMeasure units) {
 		super();
@@ -70,6 +70,11 @@ public class Ingredient {
 
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+
+	@Override
+	public String toString() {
+		return "Ingredient [description=" + description + ", amount=" + amount + ", units=" + units + "]";
 	}
 
     

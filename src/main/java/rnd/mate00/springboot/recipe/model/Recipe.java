@@ -22,7 +22,7 @@ public class Recipe {
     private String source;
     private String url;
     
-    @Lob
+    @Lob // without, there will be only varchar(255)
     private String directions;
 
     @Lob

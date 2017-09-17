@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>All recipes</title>
+</head>
+<body>
+
+<h2>These are all recipes</h2>
+
+<table>
+	<tr>
+		<td>Decription</td>
+		<td>Ingredients</td>
+	</tr>
+	<tr th:each="recipe : ${recipes}">
+		<td th:text="${recipe.description}">Description of a recipe</td>
+		<td th:text="${recipe.ingredients}">Ingredients</td>
+	</tr>
+</table>
+
+</body>
+</html>

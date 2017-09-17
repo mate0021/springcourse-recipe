@@ -47,25 +47,26 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 		UnitOfMeasure teaspoonUom = unitsOfMeasureRepository.findByName("Teaspoon").orElseThrow(IllegalArgumentException::new);;
 		UnitOfMeasure tableSpoonUom = unitsOfMeasureRepository.findByName("Tablespoon").orElseThrow(IllegalArgumentException::new);;
 		
-		Recipe r = new Recipe();
+		Recipe someRecipe = new Recipe();
 		Set<Category> categories = new HashSet<>();
 		Category americanCategory = categoryRepository.findByDescription("American").orElse(new Category());
 		Category mexicanCategory = categoryRepository.findByDescription("Mexican").orElse(new Category());
 		categories.add(americanCategory);
-		r.setCategories(categories);
+		someRecipe.setCategories(categories);
 		
-		r.setCookTime(90);
-		r.setDescription("Description of a recipe");
-		r.setDifficulty(Difficulty.MODERATE);
-		r.setDirections("Do this, do that");
+		someRecipe.setCookTime(90);
+		someRecipe.setDescription("Description of a recipe");
+		someRecipe.setDifficulty(Difficulty.MODERATE);
+		someRecipe.setDirections("Do this, do that");
+		someRecipe.addIngredient(new Ingredient("salt n peppa", BigDecimal.valueOf(5), teaspoonUom));
 		
 		Notes note = new Notes();
 		note.setRecipeNotes("additional notes");
-		r.setNotes(note);
-		note.setRecipe(r);
+		someRecipe.setNotes(note);
+		note.setRecipe(someRecipe);
 		
 		
-		recipeRepository.save(r);
+		recipeRepository.save(someRecipe);
 		
 		Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
