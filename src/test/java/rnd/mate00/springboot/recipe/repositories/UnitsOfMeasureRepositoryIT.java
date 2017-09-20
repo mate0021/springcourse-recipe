@@ -1,6 +1,5 @@
 package rnd.mate00.springboot.recipe.repositories;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +13,14 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTER_METHOD;
+import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
 
 /**
  * Created by mate00 on 20.09.17.
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 public class UnitsOfMeasureRepositoryIT {
 
     @Autowired
@@ -30,7 +30,6 @@ public class UnitsOfMeasureRepositoryIT {
     public void setUp() {}
 
     @Test
-    @DirtiesContext(methodMode = AFTER_METHOD)
     public void testFindByName() {
         String name = "Teaspoon";
         Optional<UnitOfMeasure> all = unitsOfMeasureRepository.findByName(name);
