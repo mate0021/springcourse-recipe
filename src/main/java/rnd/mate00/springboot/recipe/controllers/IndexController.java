@@ -15,8 +15,12 @@ import java.util.SortedMap;
 @Controller
 public class IndexController {
 	
-	@Autowired
 	private RecipeService recipeService;
+
+	@Autowired
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model) {
