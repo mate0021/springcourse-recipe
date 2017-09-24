@@ -1,6 +1,7 @@
 package rnd.mate00.springboot.recipe.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class RecipeService {
 		recipeRepository.findAll().iterator().forEachRemaining(result::add);
 		
 		return result;
-	}
+    }
+
+    public Recipe findById(long id) {
+        Recipe recipeById = recipeRepository.findById(id).orElseThrow(RuntimeException::new);
+
+        return recipeById;
+    }
 }
