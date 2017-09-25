@@ -21,7 +21,35 @@
 </head>
 <body>
 
+<div class="container-fluid">
+    <p th:text="${recipe.id}"/>
+    <p th:text="${recipe.description}"/>
+    <p th:text="${(recipe.preparationTime) + ' min'}"/>
+    <p th:text="${(recipe.cookTime) + ' min'}"/>
 
+    <p th:text="${recipe.directions}"/>
+
+    <img href="${recipe.image}"/>
+
+    <p th:text="${recipe.difficulty}"/>
+
+    <p th:text="${recipe.notes.recipeNotes}"/>
+
+    <table>
+        <thead>
+            <th>Ingredients</th>
+        </thead>
+        <tr th:each="ingredient : ${recipe.ingredients}">
+            <td th:text="${(ingredient.getAmount()) + ' ' + (ingredient.getDescription())}"></td>
+        </tr>
+    </table>
+
+    <p>Categories</p>
+    <ul>
+        <li th:each="category : ${recipe.categories}" th:text="${category}"></li>
+    </ul>
+
+</div>
 
 </body>
 </html>
