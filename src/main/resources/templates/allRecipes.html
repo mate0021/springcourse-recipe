@@ -40,7 +40,7 @@
                                 <th>View</th>
                             </tr>
                             </thead>
-                            <tr th:remove="all">
+                            <tr th:each="recipe : ${recipes}">
                                 <td th:text="${recipe.id}">123</td>
                                 <td th:text="${recipe.description}">Tasty Goodnees 1</td>
                                 <td th:text="${recipe.ingredients}">All ingredients</td>
