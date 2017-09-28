@@ -14,6 +14,14 @@ public class UnitOfMeasure {
 
     private String name;
 
+    public UnitOfMeasure() {
+    }
+
+    public UnitOfMeasure(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

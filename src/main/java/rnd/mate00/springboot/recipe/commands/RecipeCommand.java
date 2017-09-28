@@ -1,18 +1,16 @@
-package rnd.mate00.springboot.recipe.model;
+package rnd.mate00.springboot.recipe.commands;
 
-import javax.persistence.*;
+import rnd.mate00.springboot.recipe.model.Difficulty;
+import rnd.mate00.springboot.recipe.model.Notes;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by mate00 on 11.09.17.
+ * Created by mate00 on 28.09.17.
  */
-@Entity
-public class Recipe {
+public class RecipeCommand {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String description;
@@ -21,54 +19,12 @@ public class Recipe {
     private int servings;
     private String source;
     private String url;
-    
-    @Lob // without, there will be only varchar(255)
     private String directions;
-
-    @Lob
     private byte[] image;
-
-    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-
-    @OneToOne(cascade = CascadeType.ALL) // if we delete recipe, we also want to delete all its Notes
     private Notes notes;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "recipe_category", // new join table will be created with that name
-            joinColumns = @JoinColumn(name = "recipe_id"), // ids from this will be 'recipe_id'...
-            inverseJoinColumns = @JoinColumn(name = "category_id")) // ... and from the other side 'category_id'
-    private Set<Category> categories = new HashSet<>();
-
-
-    public void addIngredient(Ingredient ingredient) {
-    	ingredient.setRecipe(this);
-    	ingredients.add(ingredient);
-    }
-    
-    public void addCategory(Category category) {
-    	category.getRecipes().add(this);
-    	categories.add(category);
-    }
-    
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<CategoryCommand> categories = new HashSet<>();
 
     public long getId() {
         return id;
@@ -156,5 +112,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<IngredientCommand> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<IngredientCommand> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Set<CategoryCommand> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<CategoryCommand> categories) {
+        this.categories = categories;
     }
 }
