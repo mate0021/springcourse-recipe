@@ -37,7 +37,7 @@ public class RecipeController {
     }
 
     @PostMapping
-    @RequestMapping("recipeForm")
+    @RequestMapping("recipeForm") // matches html form action name
     public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand) { // will find form to match RecipeCommand
         RecipeCommand savedRecipeCommand = recipeService.saveRecipeCommand(recipeCommand);
 

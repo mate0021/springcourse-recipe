@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class RecipeCommand {
 
-    private long id;
+    private Long id;
 
     private String description;
     private int preparationTime;
@@ -26,11 +26,11 @@ public class RecipeCommand {
     private Set<IngredientCommand> ingredients = new HashSet<>();
     private Set<CategoryCommand> categories = new HashSet<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
