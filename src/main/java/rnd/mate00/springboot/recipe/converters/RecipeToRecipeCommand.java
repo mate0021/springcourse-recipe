@@ -13,6 +13,10 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
 
     @Override
     public RecipeCommand convert(Recipe source) {
+        if (source == null) {
+            return null;
+        }
+
         RecipeCommand result = new RecipeCommand();
 
         result.setDifficulty(source.getDifficulty());
@@ -20,6 +24,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
         result.setId(source.getId());
         result.setDescription(source.getDescription());
         result.setCookTime(source.getCookTime());
+        result.setNotes(source.getNotes());
 
         return result;
     }
