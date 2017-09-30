@@ -21,10 +21,9 @@ public class Category {
     public Category() {
     }
 
-    public Category(long id, String description, Set<Recipe> recipes) {
+    public Category(long id, String description) {
         this.id = id;
         this.description = description;
-        this.recipes = recipes;
     }
 
     public long getId() {

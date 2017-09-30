@@ -11,6 +11,11 @@ public class CategoryCommand {
     private String description;
     private Set<RecipeCommand> recipies;
 
+    public CategoryCommand(long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }

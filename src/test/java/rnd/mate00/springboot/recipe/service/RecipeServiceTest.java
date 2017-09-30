@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import rnd.mate00.springboot.recipe.converters.RecipeCommandToRecipe;
+import rnd.mate00.springboot.recipe.converters.RecipeToRecipeCommand;
 import rnd.mate00.springboot.recipe.model.Recipe;
 import rnd.mate00.springboot.recipe.repositories.RecipeRepository;
 
@@ -26,9 +28,15 @@ public class RecipeServiceTest {
     @Mock
     private RecipeRepository recipeRepository;
 
+    @Mock
+    private RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
+
     @Before
     public void setUp() {
-        subject = new RecipeService(recipeRepository);
+        subject = new RecipeService(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
