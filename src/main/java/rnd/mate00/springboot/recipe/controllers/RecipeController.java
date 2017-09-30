@@ -36,6 +36,14 @@ public class RecipeController {
         return "recipe/recipeform";
     }
 
+    @RequestMapping("/recipe/update/{id}")
+    public String updateRecipe(@PathVariable String id, Model model) {
+        long recipeId = Long.parseLong(id);
+        model.addAttribute("recipe", recipeService.findCommandById(recipeId));
+
+        return "recipe/recipeform";
+    }
+
     @PostMapping
     @RequestMapping("recipeForm") // matches html form action name
     public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand) { // will find form to match RecipeCommand

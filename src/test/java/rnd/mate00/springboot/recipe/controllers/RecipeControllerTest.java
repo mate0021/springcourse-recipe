@@ -16,6 +16,7 @@ import rnd.mate00.springboot.recipe.model.Recipe;
 import rnd.mate00.springboot.recipe.service.RecipeService;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -75,6 +76,20 @@ public class RecipeControllerTest {
                 .param("description", "famous new recipe"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/show/17"));
+    }
+
+    @Test
+    public void shouldShowExistingRecipe() throws Exception {
+        RecipeCommand backingBean = new RecipeCommand();
+        backingBean.setId(2L);
+
+        when(recipeService.findCommandById(anyLong())).thenReturn(backingBean);
+
+        mockMvc.perform(get("/recipe/update/1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/recipeform"))
+                .andExpect(model().attributeExists("recipe"));
+
     }
 
 }

@@ -54,4 +54,11 @@ public class RecipeService {
 
         return recipeToRecipeCommand.convert(saved);
     }
+
+    @Transactional
+    public RecipeCommand findCommandById(long id) {
+        Recipe foundRecipe = findById(id);
+
+        return recipeToRecipeCommand.convert(foundRecipe);
+    }
 }
