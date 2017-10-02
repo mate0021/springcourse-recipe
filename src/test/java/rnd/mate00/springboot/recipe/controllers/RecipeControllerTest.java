@@ -1,5 +1,6 @@
 package rnd.mate00.springboot.recipe.controllers;
 
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,6 +91,13 @@ public class RecipeControllerTest {
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
 
+    }
+
+    @Test
+    public void shouldRedirectToViewAllAfterDelete() throws Exception {
+        mockMvc.perform(get("/recipe/delete/21"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/allRecipes"));
     }
 
 }

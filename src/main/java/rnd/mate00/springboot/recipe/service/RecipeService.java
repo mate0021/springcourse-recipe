@@ -1,18 +1,16 @@
 package rnd.mate00.springboot.recipe.service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 import rnd.mate00.springboot.recipe.commands.RecipeCommand;
 import rnd.mate00.springboot.recipe.converters.RecipeCommandToRecipe;
 import rnd.mate00.springboot.recipe.converters.RecipeToRecipeCommand;
 import rnd.mate00.springboot.recipe.model.Recipe;
 import rnd.mate00.springboot.recipe.repositories.RecipeRepository;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class RecipeService {
@@ -60,5 +58,9 @@ public class RecipeService {
         Recipe foundRecipe = findById(id);
 
         return recipeToRecipeCommand.convert(foundRecipe);
+    }
+
+    public void deleteById(long l) {
+	    recipeRepository.deleteById(l);
     }
 }

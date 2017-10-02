@@ -14,6 +14,7 @@ import rnd.mate00.springboot.recipe.repositories.RecipeRepository;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -58,6 +59,13 @@ public class RecipeServiceTest {
         when(recipeRepository.findById(1L)).thenThrow(new RuntimeException());
 
         subject.findById(1L);
+    }
+
+    @Test
+    public void shouldDeleteRecipe() {
+        subject.deleteById(21L);
+
+        verify(recipeRepository).deleteById(21L);
     }
 
 }
