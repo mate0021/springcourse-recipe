@@ -37,7 +37,7 @@ public class RecipeService {
 		return result;
     }
 
-    public Recipe findById(long id) {
+    public Recipe findById(Long id) {
         Recipe recipeById = recipeRepository.findById(id).orElseThrow(RuntimeException::new);
 
         return recipeById;

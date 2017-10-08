@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import rnd.mate00.springboot.recipe.model.Ingredient;
+import rnd.mate00.springboot.recipe.service.IngredientService;
 import rnd.mate00.springboot.recipe.service.RecipeService;
 
 import java.util.Set;
@@ -18,11 +19,13 @@ public class IngredientController {
 
     private RecipeService recipeService;
 
-    @Autowired
-    public IngredientController(RecipeService recipeService) {
-        this.recipeService = recipeService;
-    }
+    private IngredientService ingredientService;
 
+    @Autowired
+    public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
+        this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
+    }
 
     @RequestMapping("/recipe/{id}/ingredients")
     public String getIngredientList(@PathVariable String id, Model model) {
@@ -31,5 +34,18 @@ public class IngredientController {
         model.addAttribute("recipe", recipeService.findById(idLong));
         model.addAttribute("ingredients", ingredients);
         return "recipe/ingredients/list";
+    }
+
+    @RequestMapping("/recipe/{id}/ingredients/{idIngredient}/show")
+    public String showSingleIngredient(@PathVariable String id, @PathVariable String idIngredient, Model model) {
+        Long recipeId = Long.parseLong(id);
+        Long ingredientId = Long.parseLong(idIngredient);
+
+        Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
+
+        model.addAttribute("recipeId", recipeId);
+        model.addAttribute("ingredient", ingredient);
+
+        return "recipe/ingredients/show";
     }
 }
