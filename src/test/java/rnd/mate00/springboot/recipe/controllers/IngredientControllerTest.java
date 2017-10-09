@@ -56,7 +56,7 @@ public class IngredientControllerTest {
 
     @Test
     public void shouldReturnViewNameForSingleIngredient() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/ingredients/2/show"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/ingredient/2/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/ingredients/show"))
                 .andExpect(model().attributeExists("ingredient"))

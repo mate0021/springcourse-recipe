@@ -36,7 +36,7 @@ public class IngredientController {
         return "recipe/ingredients/list";
     }
 
-    @RequestMapping("/recipe/{id}/ingredients/{idIngredient}/show")
+    @RequestMapping("/recipe/{id}/ingredient/{idIngredient}/show")
     public String showSingleIngredient(@PathVariable String id, @PathVariable String idIngredient, Model model) {
         Long recipeId = Long.parseLong(id);
         Long ingredientId = Long.parseLong(idIngredient);
