@@ -93,4 +93,13 @@ public class IngredientControllerTest {
                 .andExpect(view().name("redirect:/recipe/1/ingredients"));
 
     }
+
+    @Test
+    public void shouldShowIngredientForm_WhenAddingNewIngredient() throws Exception {
+        mockMvc.perform(get("/recipe/2/ingredients/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredients/ingredientform"))
+                .andExpect(model().attributeExists("ingredient"))
+                .andExpect(model().attributeExists("uomList"));
+    }
 }

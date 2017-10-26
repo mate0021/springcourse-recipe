@@ -14,6 +14,7 @@ import rnd.mate00.springboot.recipe.service.IngredientService;
 import rnd.mate00.springboot.recipe.service.RecipeService;
 import rnd.mate00.springboot.recipe.service.UnitOfMeasureService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -70,7 +71,6 @@ public class IngredientController {
         IngredientCommand ingredientCommand = ingredientService.findCommandById(ingredientId);
         ingredientCommand.setRecipeId(recipeId);
         model.addAttribute("ingredient", ingredientCommand);
-        System.out.println("command before posting: " + ingredientCommand);
 
         List<UnitOfMeasureCommand> unitOfMeasures = unitOfMeasureService.getAllUnitsOfMeasureCommand();
         model.addAttribute("uomList", unitOfMeasures);
@@ -86,5 +86,19 @@ public class IngredientController {
         ingredientService.saveIngredientCommand(ingredientCommand);
 
         return "redirect:/recipe/" + recipeId + "/ingredients";
+    }
+
+    @RequestMapping("recipe/{id}/ingredients/new")
+    public String addNewIngredient(@PathVariable String id, Model model) {
+        Long recipeId = Long.parseLong(id);
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(recipeId);
+        ingredientCommand.setUnits(new UnitOfMeasureCommand());
+
+        model.addAttribute("ingredient", ingredientCommand);
+        model.addAttribute("uomList", unitOfMeasureService.findAllUnitsOfMeasure());
+
+        return "recipe/ingredients/ingredientform";
     }
 }
