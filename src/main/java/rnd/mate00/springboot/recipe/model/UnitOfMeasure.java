@@ -1,6 +1,9 @@
 package rnd.mate00.springboot.recipe.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by mate00 on 12.09.17.

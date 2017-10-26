@@ -1,10 +1,5 @@
 package rnd.mate00.springboot.recipe.commands;
 
-import rnd.mate00.springboot.recipe.model.Recipe;
-
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
-
 /**
  * Created by mate00 on 29.09.17.
  */

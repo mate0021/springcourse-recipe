@@ -1,23 +1,17 @@
 package rnd.mate00.springboot.recipe;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import rnd.mate00.springboot.recipe.model.Category;
-import rnd.mate00.springboot.recipe.model.Difficulty;
-import rnd.mate00.springboot.recipe.model.Ingredient;
-import rnd.mate00.springboot.recipe.model.Notes;
-import rnd.mate00.springboot.recipe.model.Recipe;
-import rnd.mate00.springboot.recipe.model.UnitOfMeasure;
+import rnd.mate00.springboot.recipe.model.*;
 import rnd.mate00.springboot.recipe.repositories.CategoryRepository;
 import rnd.mate00.springboot.recipe.repositories.RecipeRepository;
 import rnd.mate00.springboot.recipe.repositories.UnitsOfMeasureRepository;
+
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {

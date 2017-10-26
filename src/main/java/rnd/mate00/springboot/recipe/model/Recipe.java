@@ -1,7 +1,6 @@
 package rnd.mate00.springboot.recipe.model;
 
 import javax.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 

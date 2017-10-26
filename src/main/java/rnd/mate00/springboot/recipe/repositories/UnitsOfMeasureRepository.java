@@ -1,7 +1,6 @@
 package rnd.mate00.springboot.recipe.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-
 import rnd.mate00.springboot.recipe.model.UnitOfMeasure;
 
 import java.util.List;
