@@ -2,6 +2,7 @@ package rnd.mate00.springboot.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import rnd.mate00.springboot.recipe.model.*;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@Profile({"default"})
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	private RecipeRepository recipeRepository;
@@ -33,10 +35,11 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		populateRecipies();
+        System.out.println("Loading bootstrap from DEFAULT profile");
+        populateRecipes();
 	}
 	
-	private void populateRecipies() {
+	private void populateRecipes() {
 		UnitOfMeasure eachUom = unitsOfMeasureRepository.findByName("Pinch").orElseThrow(IllegalArgumentException::new);
 		UnitOfMeasure teaspoonUom = unitsOfMeasureRepository.findByName("Teaspoon").orElseThrow(IllegalArgumentException::new);;
 		UnitOfMeasure tableSpoonUom = unitsOfMeasureRepository.findByName("Tablespoon").orElseThrow(IllegalArgumentException::new);;
